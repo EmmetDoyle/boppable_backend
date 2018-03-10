@@ -4,12 +4,15 @@ from boppable.serializers import *
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
         'users': reverse('users-create', request=request, format=format),
         'parties': reverse('parties-create', request=request, format=format),
+        'trackvoting': reverse('trackvoting-create', request=request, format=format)
     })
 
 class SongList(generics.ListCreateAPIView):
@@ -37,4 +40,15 @@ class PartyDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PartySerializer
 
 
+class TrackVotingCreate(generics.CreateAPIView):
+    queryset = TrackVoting.objects.all()
+    serializer_class = TrackVotingCreateSerializer
 
+@csrf_exempt
+def does_track_voting_exist(request):
+    track_id = request.POST['track_id']
+    playlist = request.POST['playlist']
+
+    exists = TrackVoting.objects.filter(playlist_id=playlist, track_id=track_id).exists()
+
+    return JsonResponse({'exists': exists})

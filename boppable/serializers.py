@@ -11,23 +11,30 @@ class SongSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('name',)
+        fields = ('id', 'name',)
 
 
-class TrackVotingSerializer(serializers.ModelSerializer):
+
+class TrackVotingCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TrackVoting
+        fields = ('id','track_id', 'votes', 'playlist', 'suggester')
+
+
+class TrackVotingGetSerializer(serializers.ModelSerializer):
     suggester = UserSerializer()
 
     class Meta:
         model = TrackVoting
-        fields = ('track_id', 'votes', 'playlist', 'suggester')
+        fields = ('id','track_id', 'votes', 'playlist', 'suggester')
 
 
 class PlaylistSerializer(serializers.ModelSerializer):
-    tracks = TrackVotingSerializer(many=True)
+    tracks = TrackVotingGetSerializer(many=True)
 
     class Meta:
         model = Playlist
-        fields = ('party', 'tracks')
+        fields = ('id','party', 'tracks')
 
 
 class PartySerializer(serializers.ModelSerializer):
@@ -35,5 +42,5 @@ class PartySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Party
-        fields = ('passcode', 'host', 'playlist')
+        fields = ('id','passcode', 'host', 'playlist')
         read_only_fields = ('passcode', 'playlist')
