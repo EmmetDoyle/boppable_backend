@@ -42,5 +42,5 @@ class PartySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Party
-        fields = ('id','passcode', 'host', 'playlist')
+        fields = ('passcode', 'host', 'playlist')
         read_only_fields = ('passcode', 'playlist')

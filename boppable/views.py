@@ -4,7 +4,7 @@ from boppable.serializers import *
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 @api_view(['GET'])
@@ -43,6 +43,27 @@ class PartyDetail(generics.RetrieveUpdateDestroyAPIView):
 class TrackVotingCreate(generics.CreateAPIView):
     queryset = TrackVoting.objects.all()
     serializer_class = TrackVotingCreateSerializer
+
+
+@csrf_exempt
+def track_voting_upvote(request, pk):
+    trackvoting = TrackVoting.objects.get(pk=pk)
+    trackvoting.votes += 1
+
+    trackvoting.save()
+
+    return HttpResponse(status=204)
+
+
+@csrf_exempt
+def track_voting_downvote(request, pk):
+    trackvoting = TrackVoting.objects.get(pk=pk)
+    trackvoting.votes -= 1
+
+    trackvoting.save()
+
+    return HttpResponse(status=204)
+
 
 @csrf_exempt
 def does_track_voting_exist(request):

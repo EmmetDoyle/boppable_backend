@@ -53,5 +53,8 @@ class TrackVoting(models.Model):
     votes = models.IntegerField()
     playlist = models.ForeignKey(Playlist, related_name='tracks')
 
+    class Meta:
+        ordering = ('-votes',)
+
     def __str__(self):
         return '{} ({} votes)'.format(self.track_id, self.votes)
