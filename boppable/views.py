@@ -1,6 +1,6 @@
 from rest_framework import generics
-from songs.models import Song
-from songs.serializers import SongSerializer
+from boppable.models import Song
+from boppable.serializers import SongSerializer
 
 class SongList(generics.ListCreateAPIView):
     queryset = Song.objects.all()

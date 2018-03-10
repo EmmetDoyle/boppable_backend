@@ -39,7 +39,7 @@ class TrackRequest(models.Model):
 
 
 class Playlist(models.Model):
-    party = models.OneToOneRel(Party, related_name='playlist')
+    party = models.OneToOneField(Party, related_name='playlist')
 
     def __str__(self):
         return self.party
