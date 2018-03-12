@@ -82,8 +82,11 @@ WSGI_APPLICATION = 'boppable_backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'boppabledb',
+        'USER': 'postgres',
+        'PASSWORD': 'password123',
+        'HOST': 'boppable.cun5pwf1m8dq.eu-west-1.rds.amazonaws.com',
     }
 }
 
