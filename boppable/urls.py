@@ -11,5 +11,6 @@ urlpatterns = [
     url(r'^trackvoting/exists/$', views.does_track_voting_exist),
     url(r'^trackvoting/(?P<pk>[0-9]+)/upvote$', views.track_voting_upvote),
     url(r'^trackvoting/(?P<pk>[0-9]+)/downvote$', views.track_voting_downvote),
+    url(r'^trackvoting/(?P<pk>[0-9]+)$', views.TrackVotingDelete.as_view(), name='trackvoting-delete'),
 ]
 urlpatterns = format_suffix_patterns(urlpatterns)

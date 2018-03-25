@@ -45,6 +45,11 @@ class TrackVotingCreate(generics.CreateAPIView):
     serializer_class = TrackVotingCreateSerializer
 
 
+class TrackVotingDelete(generics.DestroyAPIView):
+    queryset = TrackVoting.objects.all()
+    serializer_class = TrackVotingGetSerializer
+
+
 @csrf_exempt
 def track_voting_upvote(request, pk):
     trackvoting = TrackVoting.objects.get(pk=pk)

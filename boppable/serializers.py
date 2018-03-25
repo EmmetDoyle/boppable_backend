@@ -14,11 +14,10 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'name',)
 
 
-
 class TrackVotingCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = TrackVoting
-        fields = ('id','track_id', 'votes', 'playlist', 'suggester')
+        fields = ('id', 'track_id', 'votes', 'playlist', 'suggester')
 
 
 class TrackVotingGetSerializer(serializers.ModelSerializer):
@@ -26,7 +25,7 @@ class TrackVotingGetSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TrackVoting
-        fields = ('id','track_id', 'votes', 'playlist', 'suggester')
+        fields = ('id', 'track_id', 'votes', 'playlist', 'suggester')
 
 
 class PlaylistSerializer(serializers.ModelSerializer):
@@ -34,7 +33,7 @@ class PlaylistSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Playlist
-        fields = ('id','party', 'tracks')
+        fields = ('id', 'party', 'tracks')
 
 
 class PartySerializer(serializers.ModelSerializer):
