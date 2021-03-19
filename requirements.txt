@@ -6,7 +6,7 @@ cycler==0.10.0
 decorator==4.2.1
 Django==1.11.7
 django-cors-headers==2.2.0
-djangorestframework==3.7.3
+djangorestframework==3.11.2
 docker==2.6.1
 docker-pycreds==0.2.1
 easygui==0.98.1
